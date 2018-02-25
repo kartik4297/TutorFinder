@@ -12,16 +12,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
-        <activity android:name=".WelcomeActivity">
+        <activity android:name=".LoginRegister.MainActivity" />
+        <activity android:name=".LoginRegister.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".RegisterActivity" />
+        <activity android:name=".LoginRegister.LoginActivity" />
+        <activity android:name=".LoginRegister.RegisterActivity" />
         <activity android:name=".WelcomeStudent" />
     </application>
 

@@ -1,4 +1,4 @@
-package com.example.kartik.tutorfinder;
+package com.example.kartik.tutorfinder.LoginRegister;
 
 import android.content.Intent;
 import android.os.Build;
@@ -13,11 +13,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.example.kartik.tutorfinder.R;
+
 public class WelcomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ViewPager mPager ;
     private int[] layouts={R.layout.first_slide,R.layout.second_slide,R.layout.third_slide,R.layout.first_slide};
-    private  MpagerAdapter mpagerAdapter ;
+    private MpagerAdapter mpagerAdapter ;
     private LinearLayout Dots_Layout;
     private ImageView[] dots;
     private Button BnNext,BnSkip;

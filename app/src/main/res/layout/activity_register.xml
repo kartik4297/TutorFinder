@@ -9,7 +9,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_marginTop="40dp"
-    tools:context="com.example.kartik.tutorfinder.RegisterActivity"
+    tools:context="com.example.kartik.tutorfinder.LoginRegister.RegisterActivity"
     >
 
 

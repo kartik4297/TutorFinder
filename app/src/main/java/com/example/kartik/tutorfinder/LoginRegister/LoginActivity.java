@@ -1,52 +1,53 @@
-package com.example.kartik.tutorfinder;
+package com.example.kartik.tutorfinder.LoginRegister;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.Volley;
+import com.example.kartik.tutorfinder.R;
+import com.example.kartik.tutorfinder.WelcomeStudent;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
 public class LoginActivity extends AppCompatActivity {
+    public EditText et_email, et_pass;
+    public TextView tv_reg;
+    public Button bLogin;
 
-  public EditText et_email,et_pass ;
-  public TextView tv_reg;
-  public  Button bLogin ;
-        //Somewhere that has access to a context
-    public void displayMessage(String toastString){
-        Toast.makeText(this, toastString, Toast.LENGTH_LONG).show();
+
+    //Somewhere that has access to a context
+    public void displayMessage(String toastString) {
+        Toast.makeText(LoginActivity.this, toastString, Toast.LENGTH_LONG).show();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Intent intent=getIntent();
+        Intent intent = getIntent();
         et_email = (EditText) findViewById(R.id.et_email);
         et_pass = (EditText) findViewById(R.id.et_pass);
         tv_reg = (TextView) findViewById(R.id.tv_reg);
         bLogin = (Button) findViewById(R.id.login_btn);
         //fetching info from register page after successful registration
-        if(intent!=null) {
-            String Email=intent.getStringExtra("email");
+        if (intent != null) {
+            String Email = intent.getStringExtra("email");
             et_email.setText(Email);
-            String PASS=intent.getStringExtra("password");
+            String PASS = intent.getStringExtra("password");
             et_pass.setText(PASS);
 
         }
-
-
         tv_reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,16 +56,17 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
         bLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 final String email = et_email.getText().toString();
                 final String password = et_pass.getText().toString();
-                if (email!="" &&  password!="") {
+                if (email.equals("") && password.equals("")) {
+                    displayMessage("Email or password can not be empty.");
+                } else {
                     // Response received from the server
                     Response.Listener<String> responseListener = new Response.Listener<String>() {
-
                         @Override
                         public void onResponse(String response) {
                             try {
@@ -93,8 +95,9 @@ public class LoginActivity extends AppCompatActivity {
                                     intent.putExtra("address", address);
                                     LoginActivity.this.startActivity(intent);
                                 } else {
+                                    displayMessage("Login Failed!");
                                     AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                                    builder.setMessage("Login Failed")
+                                    builder.setMessage("Wrong Username or Password!")
                                             .setNegativeButton("Retry", null)
                                             .create()
                                             .show();
@@ -112,36 +115,37 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             String json = null;
-                            NetworkResponse response = error.networkResponse;
-                            int statusCode = response.statusCode;
-                             System.out.println("ErrorCode.........................." +statusCode);
-                            if (response != null && response.data != null) {
-                                json = new String(response.data);
-                                   if(json != null) displayMessage(json);
-                                switch (statusCode) {
+                            NetworkResponse nresponse = error.networkResponse;
+                            //    int statusCode = nresponse.statusCode;
+                            //   System.out.println("ErrorCode.........................." + statusCode);
+                            if (nresponse != null && nresponse.data != null) {
+                                json = new String(nresponse.data);
+                                if (json != null)
+                                    displayMessage(json);
+                                switch (nresponse.statusCode) {
                                     case 404:
                                         Toast.makeText(LoginActivity.this, "incorrect URL requested.\nERROR_CODE=404", Toast.LENGTH_SHORT).show();
                                         break;
-                                        default: displayMessage("invalid error");
-
+                                    //more error can be listed
+                                    default:
+                                        displayMessage("invalid error");
                                 }
-
-                                //Additional cases
                             }
-
-
+                            if (nresponse == null || nresponse.data == null) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                                builder.setMessage("Server not found! Retry after sometimes.")
+                                        .setNegativeButton("Ok", null)
+                                        .create()
+                                        .show();
+                            }
                         }
                     };
-
 
                     LoginRequest loginRequest = new LoginRequest(email, password, responseListener, errorListener);
                     RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
                     queue.add(loginRequest);
                 }
-                else
-                {
-                    displayMessage("Enter email and password");
-                }
+
             }
         });
 

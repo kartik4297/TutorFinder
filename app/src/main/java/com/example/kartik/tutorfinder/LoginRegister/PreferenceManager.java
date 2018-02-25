@@ -1,7 +1,9 @@
-package com.example.kartik.tutorfinder;
+package com.example.kartik.tutorfinder.LoginRegister;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
+import com.example.kartik.tutorfinder.R;
 
 /**
  * Created by kartik on 06-12-2017.

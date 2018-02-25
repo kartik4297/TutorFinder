@@ -1,4 +1,4 @@
-package com.example.kartik.tutorfinder;
+package com.example.kartik.tutorfinder.LoginRegister;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;

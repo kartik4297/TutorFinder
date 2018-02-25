@@ -1,15 +1,13 @@
-package com.example.kartik.tutorfinder;
+package com.example.kartik.tutorfinder.LoginRegister;
 
 
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,15 +19,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.NetworkResponse;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
+import com.example.kartik.tutorfinder.ConnectionError;
+import com.example.kartik.tutorfinder.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
     public RadioGroup gender_grp;
@@ -38,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     public Button register_btn ;
     public TextView tv_login;
     Spinner sp_state,sp_city;
+    ConnectionError connectionError=new ConnectionError(RegisterActivity.this);
 
     String state,city;
     String[][] dists =new String[][]{{"Nicobar", "North and Middle Andaman","South Andaman"},{"Anantapur","Chittoor","East Godavari","Guntur","Kadapa","Krishna","Kurnool",
@@ -116,15 +116,10 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                  else {
                      et_confirm.setVisibility(View.GONE);
                      et_confirm.setEnabled(false);
-
                  }
-
             }
         });
-
-
-
-            et_confirm.addTextChangedListener(new TextWatcher() {
+        et_confirm.addTextChangedListener(new TextWatcher() {
                 @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                      }
                 @Override public void onTextChanged(CharSequence s, int start, int before, int count) { bool_confirn=Validation.isConfirmPassword(s,et_confirm,et_pass, true); }
@@ -139,7 +134,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 //city spinner itemSelect listener registration
         sp_city.setOnItemSelectedListener(this);
         register_btn.setOnClickListener(this);
-        checkInternetConenction();
+      connectionError.checkInternetConenction();
     }
     //submit method to vallidate the form on click of register button.
 
@@ -148,7 +143,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     public void onClick(View view) {
 
         if(bool_email && bool_pass  && bool_confirn) {
-            checkInternetConenction();
+           connectionError.checkInternetConenction();
             String name = et_name.getText().toString();
             int selected_id = gender_grp.getCheckedRadioButtonId();
             radio_btn = (RadioButton) findViewById(selected_id);
@@ -193,7 +188,30 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                 }
             };
 
+            //Error Listener
+            Response.ErrorListener errorListener = new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    String json = null;
+                    NetworkResponse nresponse = error.networkResponse;
+                    int statusCode = nresponse.statusCode;
+                    System.out.println("ErrorCode.........................." + statusCode);
+                    if (nresponse != null && nresponse.data != null) {
+                        json = new String(nresponse.data);
+                        if (json != null)
+                           connectionError.displayMessage(json);
+                        switch (statusCode) {
+                            case 404:
+                                Toast.makeText(RegisterActivity.this, "incorrect URL requested.\nERROR_CODE=404", Toast.LENGTH_SHORT).show();
+                                break;
+                            //more error can be listed
+                            default:
+                                connectionError.displayMessage("invalid error");
 
+                        }
+                    }
+                }
+            };
             RegisterRequest registerRequest = new RegisterRequest(name, email, password, gender, age, address, mobile, responseListener);
             RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
             queue.add(registerRequest);
@@ -201,8 +219,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         else {
             Toast.makeText(this,"Enter correct information above",Toast.LENGTH_SHORT).show();
         }
-
-        }
+    }
 
 
     // Register Button Click method ends
@@ -230,32 +247,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
            city = tv.getText().toString();
        }
     }
-    //Spinner  onNothinngSelected and onItemSelected  metheods end
 
-    private boolean checkInternetConenction() {
-        // get Connectivity Manager object to check connection
-        ConnectivityManager connec
-                =(ConnectivityManager)getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
 
-        // Check for network connections
-        if ( connec.getNetworkInfo(0).getState() ==
-                android.net.NetworkInfo.State.CONNECTED ||
-                connec.getNetworkInfo(0).getState() ==
-                        android.net.NetworkInfo.State.CONNECTING ||
-                connec.getNetworkInfo(1).getState() ==
-                        android.net.NetworkInfo.State.CONNECTING ||
-                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED ) {
-            Toast.makeText(this, " Connected ", Toast.LENGTH_LONG).show();
-            return true;
-        }else if (
-                connec.getNetworkInfo(0).getState() ==
-                        android.net.NetworkInfo.State.DISCONNECTED ||
-                        connec.getNetworkInfo(1).getState() ==
-                                android.net.NetworkInfo.State.DISCONNECTED  ) {
-            Toast.makeText(this, " Not Connected ", Toast.LENGTH_LONG).show();
-            return false;
-        }
-        return false;
-    }
+
 
 }

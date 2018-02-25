@@ -1,4 +1,4 @@
-package com.example.kartik.tutorfinder;
+package com.example.kartik.tutorfinder.LoginRegister;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
@@ -9,7 +9,7 @@ import java.util.Map;
  */
 
 public class RegisterRequest extends StringRequest {
-    private static final String REGISTER_REQUEST_URL="http://192.168.0.6/mobile/register.php";
+    private static final String REGISTER_REQUEST_URL="http://192.168.0.104/mobile/register.php";
     private Map<String, String> params;
     public RegisterRequest(String name,String email, String password,String gender, int age, String address, String mobile,
                            Response.Listener<String> listener)
@@ -24,7 +24,6 @@ public class RegisterRequest extends StringRequest {
         params.put("address",address);
         params.put("mobile",mobile);
     }
-
     @Override
     public Map<String, String> getParams() {
         return params;
