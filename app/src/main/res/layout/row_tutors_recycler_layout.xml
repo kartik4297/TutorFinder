@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:layout_margin="5dp"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:background="@color/TutorRowItemBackgroundColor"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="62dp"
+                    android:layout_height="58dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="12dp"
+
+                    android:background="@android:color/darker_gray"
+                    app:srcCompat="@mipmap/ic_account_circle_white_48dp" />
+
+                <TextView
+                    android:id="@+id/tv_tutor_connect"
+                    android:layout_width="67dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="Connect"
+                    android:textSize="14dp" />
+
+
+                <TextView
+                    android:id="@+id/tv_tutor_gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/tv_tutor_age"
+                    android:layout_marginBottom="5dp"
+                    android:text="More.."
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/TutorRowItemBackgroundColor">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+                <TextView
+
+                    android:id="@+id/tv_tutor_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="3dp"
+                    android:layout_toEndOf="@+id/tv_tutor_age"
+                    android:layout_toRightOf="@+id/tv_tutor_age"
+                    android:text="TextView"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textIsSelectable="false"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_tutor_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_tutor_name"
+        android:layout_centerHorizontal="true"
+        android:text="Age: "
+        android:textSize="14dp" />
+
+    <TextView
+        android:id="@+id/tv_tutor_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_tutor_name"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:text="Status" />
+</LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_tutor_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/imageView7"
+                    android:layout_alignLeft="@+id/tv_tutor_name"
+                    android:layout_alignStart="@+id/tv_tutor_name"
+                    android:layout_marginBottom="5dp"
+                    android:text="Title"
+                    android:textSize="14dp" />
+
+
+                <TextView
+                    android:id="@+id/tv_tutor_subs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tv_tutor_mobile"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignStart="@+id/tv_tutor_mobile"
+                    android:layout_marginBottom="5dp"
+                    android:text="Subjects:"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/tv_tutor_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/tv_tutor_subs"
+                    android:layout_alignLeft="@+id/tv_tutor_title"
+                    android:layout_alignStart="@+id/tv_tutor_title"
+                    android:layout_marginBottom="5dp"
+                    android:text="City:"
+                    android:textSize="14dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_tutor_place"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Tuition Place: "
+                        android:textSize="14dp" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:background="@mipmap/ic_add_box_white_36dp"
+                        android:backgroundTint="@color/colorSlide_3"
+                        android:textSize="10dp"
+                        android:textStyle="bold"
+                        android:theme="@style/AppTheme" />
+
+                    <TextView
+                        android:id="@+id/i_am_student_too"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@+id/tv_tutor_place"
+                        android:background="#C0CA33"
+                        android:text="I'm a student too."
+                        android:textColor="#fafafa"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

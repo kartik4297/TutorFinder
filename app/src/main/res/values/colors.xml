@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#aed581</color>
+    <color name="colorPrimaryDark">#7da453</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="primaryLightColor">#e1ffb1</color>
+    <color name="primaryTextColor">#000000</color>
+
+
+
+
+
+    <color name="colorSlide_1">#121514</color>
+    <color name="colorSlide_2">#795548</color>
+    <color name="colorSlide_3">#84c834</color>
+    <color name="colorSlide_4">#3F51B5</color>
+
+    <color name ="activeDots">#FFFAFA </color>
+    <color name ="inactiveDots">#83878b</color>
+
+    <color name="TutorRowItemBackgroundColor">#b7ed52</color>
+
+</resources>

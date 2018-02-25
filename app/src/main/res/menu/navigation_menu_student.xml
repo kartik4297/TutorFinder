@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item android:id="@+id/nav_home"
+            android:title="Home"
+            android:icon="@mipmap/ic_home_black_24dp"/>
+
+<item android:id="@+id/nav_account"
+    android:title="My Account"
+    android:icon="@mipmap/ic_account_box_black_24dp"/>
+        <item android:id="@+id/nav_message"
+            android:title="Messaget"
+            android:icon="@mipmap/ic_message_black_24dp"/>
+        <item android:id="@+id/nav_setting"
+            android:title="Setting"
+            android:icon="@mipmap/ic_settings_black_24dp"/>
+    <item
+        android:id="@+id/nav_logout"
+        android:title="Logout"
+        android:icon="@mipmap/exit_24"/>
+
+    </group>
+    <item android:title="Social">
+        <menu>
+            <item
+                android:title="Want to be a tutor"
+                android:id="@+id/add_to_tutors"
+                ></item>
+            <item
+                android:title="Group"
+                android:id="@+id/id_group"
+                ></item>
+            <item
+                android:title="Share"
+                android:id="@+id/id_share"
+                ></item>
+        </menu>
+    </item>
+
+
+
+
+
+</menu>
