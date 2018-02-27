@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class MpagerAdapter extends PagerAdapter  {
-
     private int[] layouts;
     private LayoutInflater layoutinflater;
     private Context context;

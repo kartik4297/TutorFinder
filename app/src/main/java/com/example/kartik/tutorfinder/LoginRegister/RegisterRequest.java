@@ -7,7 +7,6 @@ import java.util.Map;
 /**
  * Created by kartik on 14-12-2017.
  */
-
 public class RegisterRequest extends StringRequest {
     private static final String REGISTER_REQUEST_URL="http://tutorsfind.000webhostapp.com/Mobile/register.php";
     private Map<String, String> params;

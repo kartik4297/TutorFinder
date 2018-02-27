@@ -54,7 +54,6 @@ public class ConnectionError {
 
 
     //This method is being used in onErrorResponse(VolleyError error) method to handle the error
-
     public void volleyErrorHandling(VolleyError error)
     {
         String json = null;

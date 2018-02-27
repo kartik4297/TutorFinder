@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 /**
  * Created by kartik on 02-02-2018.
  */
-
 public class Validation {
     // Regular Expression
     // you can change the expression based on your need

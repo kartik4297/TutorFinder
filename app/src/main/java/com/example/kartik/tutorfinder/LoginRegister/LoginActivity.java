@@ -80,8 +80,6 @@ public  String Email,Password;
                     onReqRes(Email,Password,preferenceManager,connectionError, LoginActivity.this);
                 }
             });
-
-
     }//on create() ends
 
     //Method to handle the Request and Response

@@ -37,19 +37,13 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         //****************************************************************************************************//
-
-
         final PreferenceManager preferenceManager = new PreferenceManager(WelcomeActivity.this, getString(R.string.login_preference));
         final ConnectionError connectionError = new ConnectionError(WelcomeActivity.this);
         Boolean preferenceStatus = preferenceManager.checkLoginPreference();
 
         //*****************************************************888
         Boolean stts = new PreferenceManager(this, this.getString(R.string.my_preference)).checkPreference();
-
-
             if (stts) {
                 if (preferenceStatus) {
                    onReqRes(preferenceManager.username, preferenceManager.password, preferenceManager, connectionError, WelcomeActivity.this);

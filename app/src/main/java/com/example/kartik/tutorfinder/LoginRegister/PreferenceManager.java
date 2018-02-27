@@ -49,7 +49,6 @@ public class PreferenceManager {
 
     public boolean checkPreference()
     {
-
         boolean status=false;
         boolean s=sharedPreferences.getString(context.getString(R.string.my_preference_key),"null").equals("null");
         System.out.println("STATUS:  "+s);

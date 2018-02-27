@@ -73,10 +73,6 @@ FragmentTransaction fragmentTransaction;
 
     }
 
-
-
-
-
     @Override
     protected   void onPostCreate(Bundle saveInstanceState){
         super.onPostCreate(saveInstanceState);

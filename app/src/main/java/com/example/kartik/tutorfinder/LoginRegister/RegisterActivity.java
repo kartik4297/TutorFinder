@@ -171,8 +171,6 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                         if(jsonResponse!=null) {
 
                             success = jsonResponse.getBoolean("success");
-
-
                             if (success) {
                                 System.out.println("SUCCESS========" + success);
                                 Toast.makeText(RegisterActivity.this, "registered successfully.", Toast.LENGTH_SHORT).show();
