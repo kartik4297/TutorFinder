@@ -4,7 +4,6 @@ import android.content.Context;
 import android.widget.EditText;
 
 import java.util.regex.Pattern;
-
 /**
  * Created by kartik on 02-02-2018.
  */
