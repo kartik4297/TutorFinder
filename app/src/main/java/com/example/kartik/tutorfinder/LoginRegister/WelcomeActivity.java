@@ -41,7 +41,7 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
 
         //****************************************************************************************************//
 
-        // CheckLoginPreference checkLoginPreference = new CheckLoginPreference();
+
         final PreferenceManager preferenceManager = new PreferenceManager(WelcomeActivity.this, getString(R.string.login_preference));
         final ConnectionError connectionError = new ConnectionError(WelcomeActivity.this);
         Boolean preferenceStatus = preferenceManager.checkLoginPreference();
