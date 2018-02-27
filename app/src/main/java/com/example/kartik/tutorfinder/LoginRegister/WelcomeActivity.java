@@ -142,7 +142,6 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
 
         switch(view.getId())
         {
-
             case R.id.bnNext:
                 loadNextSlide();
                 break;
@@ -150,7 +149,6 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
                 loadHome();
                 new PreferenceManager(this,this.getString(R.string.my_preference)).writePreference();
                 break;
-
         }
     }
 
