@@ -20,6 +20,10 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.kartik.tutorfinder.LoginRegister.LoginActivity;
+import com.example.kartik.tutorfinder.LoginRegister.PreferenceManager;
+
 public class WelcomeStudent extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
@@ -90,6 +94,13 @@ FragmentTransaction fragmentTransaction;
         } else if (id == R.id.nav_home) {
 
 
+        }
+        else if (id==R.id.nav_logout)
+        {
+            PreferenceManager pm = new PreferenceManager(this,getString(R.string.login_preference));
+            pm.checkLoginPreference();
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
         }
         return true;
     }

@@ -16,8 +16,13 @@
     <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
     <string name="play_again">Play Again</string>
 
-    <string name="my_preference">"com.example.kartik.MyPref"</string>
-    <string name="my_preference_key">"com.example.kartik.MyPrefKey"</string>
+    <string name="my_preference">"com.example.kartik.LoginRegister.IntroSliderPref"</string>
+    <string name="my_preference_key">"com.example.kartik.LoginRegister.IntroSliderPrefKey"</string>
+
+    <string name="login_preference">"com.example.kartik.LoginRegister.LoginPref"</string>
+    <string name="login_preference_key1_uname">"com.example.kartik.LoginRegister.LoginPrefKey1.uname"</string>
+    <string name="login_preference_key2_pass">"com.example.kartik.LoginRegister.LoginPrefKey2.password"</string>
+
 
     <string name="Email">Email</string>
     <string name="Name">Name</string>

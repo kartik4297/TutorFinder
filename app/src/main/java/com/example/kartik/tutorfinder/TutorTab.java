@@ -68,7 +68,7 @@ public class TutorTab extends Fragment {
 
 
         private RecyclerAdapter adapter ;
-        String json_string="http://192.168.0.6/mobile/all_tutors.php";
+        String json_string="http://tutorsfind.000webhostapp.com/Mobile/all_tutors.php";
 
         @Override
         protected void onPreExecute() {

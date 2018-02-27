@@ -9,7 +9,7 @@ import java.util.Map;
  */
 
 public class RegisterRequest extends StringRequest {
-    private static final String REGISTER_REQUEST_URL="http://192.168.0.104/mobile/register.php";
+    private static final String REGISTER_REQUEST_URL="http://tutorsfind.000webhostapp.com/Mobile/register.php";
     private Map<String, String> params;
     public RegisterRequest(String name,String email, String password,String gender, int age, String address, String mobile,
                            Response.Listener<String> listener)

@@ -24,7 +24,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
-import com.example.kartik.tutorfinder.ConnectionError;
 import com.example.kartik.tutorfinder.R;
 
 import org.json.JSONException;
@@ -156,24 +155,41 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
             Response.Listener<String> responseListener = new Response.Listener<String>() {
 
-                @Override
+                    @Override
                 public void onResponse(String response) {
-
-                    try {
-                        JSONObject jsonResponse = new JSONObject(response);
                         boolean success = false,status=false;
-                        success = jsonResponse.getBoolean("success");
+                        try{
+                        System.out.println("Response================================"+response);
+                    JSONObject jsonResponse=null;
+                    try {
+                        jsonResponse = new JSONObject(response);
+                    }
+                    catch (JSONException e)
+                    {
+                        e.printStackTrace();
+                    }
+                        if(jsonResponse!=null) {
+
+                            success = jsonResponse.getBoolean("success");
 
 
-                        if (success) {
-                            Toast.makeText(RegisterActivity.this,"registered successfully.",Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                            intent.putExtra("email", email);
-                            intent.putExtra("password", password);
-                              RegisterActivity.this.startActivity(intent);
+                            if (success) {
+                                System.out.println("SUCCESS========" + success);
+                                Toast.makeText(RegisterActivity.this, "registered successfully.", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                intent.putExtra("email", email);
+                                intent.putExtra("password", password);
+                                RegisterActivity.this.startActivity(intent);
+                                finish();
 
+                            }
+                        }
+                        else if(jsonResponse==null)
+                        {
+                            Toast.makeText(RegisterActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+                        }
 
-                        } else {
+                        else {
 
                             AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
                             builder.setMessage("Register Failed")
@@ -192,24 +208,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             Response.ErrorListener errorListener = new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    String json = null;
-                    NetworkResponse nresponse = error.networkResponse;
-                    int statusCode = nresponse.statusCode;
-                    System.out.println("ErrorCode.........................." + statusCode);
-                    if (nresponse != null && nresponse.data != null) {
-                        json = new String(nresponse.data);
-                        if (json != null)
-                           connectionError.displayMessage(json);
-                        switch (statusCode) {
-                            case 404:
-                                Toast.makeText(RegisterActivity.this, "incorrect URL requested.\nERROR_CODE=404", Toast.LENGTH_SHORT).show();
-                                break;
-                            //more error can be listed
-                            default:
-                                connectionError.displayMessage("invalid error");
-
-                        }
-                    }
+                    connectionError.checkInternetConenction();
+                   connectionError.volleyErrorHandling(error);
                 }
             };
             RegisterRequest registerRequest = new RegisterRequest(name, email, password, gender, age, address, mobile, responseListener);
