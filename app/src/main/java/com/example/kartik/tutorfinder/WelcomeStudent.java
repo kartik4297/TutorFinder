@@ -72,7 +72,6 @@ FragmentTransaction fragmentTransaction;
         tabLayout.setupWithViewPager(viewPager);
 
     }
-
     @Override
     protected   void onPostCreate(Bundle saveInstanceState){
         super.onPostCreate(saveInstanceState);
@@ -85,8 +84,6 @@ FragmentTransaction fragmentTransaction;
         if (id == R.id.add_to_tutors) {
 
         } else if (id == R.id.nav_home) {
-
-
         }
         else if (id==R.id.nav_logout)
         {
