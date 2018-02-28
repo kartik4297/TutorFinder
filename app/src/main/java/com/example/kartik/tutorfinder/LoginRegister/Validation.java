@@ -43,7 +43,6 @@ public class Validation {
     {
         return isMatchPassword(charSeq,editText,originalPass,CON_PASS_ERR,required);
     }
-
     // return true if the input field is valid, based on the parameter passed
     public static boolean isValid(EditText editText, String regex, String errMsg, boolean required) {
         String text= editText.getText().toString().trim();

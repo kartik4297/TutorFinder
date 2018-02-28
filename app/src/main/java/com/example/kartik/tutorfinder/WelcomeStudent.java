@@ -78,14 +78,11 @@ FragmentTransaction fragmentTransaction;
         super.onPostCreate(saveInstanceState);
         mToggle.syncState();
     }
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.add_to_tutors) {
-
-
 
         } else if (id == R.id.nav_home) {
 
@@ -94,7 +91,7 @@ FragmentTransaction fragmentTransaction;
         else if (id==R.id.nav_logout)
         {
             PreferenceManager pm = new PreferenceManager(this,getString(R.string.login_preference));
-            pm.checkLoginPreference();
+            pm.clearLoginPreference();
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         }

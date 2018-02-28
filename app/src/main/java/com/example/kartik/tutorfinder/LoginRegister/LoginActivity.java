@@ -11,11 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.NetworkResponse;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.kartik.tutorfinder.R;
 import com.example.kartik.tutorfinder.WelcomeStudent;
@@ -27,27 +25,22 @@ public class LoginActivity extends AppCompatActivity {
     public TextView tv_reg;
     public Button bLogin;
 public  String Email,Password;
+public PreferenceManager pmLogin;
+ConnectionError connErr;
 
 
     //Somewhere that has access to a context
     public void displayMessage(String toastString) {
         Toast.makeText(LoginActivity.this, toastString, Toast.LENGTH_LONG).show();
     }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         String pref=getString(R.string.login_preference);
-        final PreferenceManager preferenceManager =new PreferenceManager(LoginActivity.this,pref);
-        final ConnectionError connectionError = new ConnectionError(LoginActivity.this);
+        pmLogin =new PreferenceManager(LoginActivity.this,pref);
+        connErr= new ConnectionError(LoginActivity.this);
         //Boolean preferenceStatus = preferenceManager.checkLoginPreference();
-
-
-
-
-
             Intent intent = getIntent();
             et_email = (EditText) findViewById(R.id.et_email);
             et_pass = (EditText) findViewById(R.id.et_pass);
@@ -71,29 +64,27 @@ public  String Email,Password;
                     finish();
                 }
             });
-            connectionError.checkInternetConenction();
+            connErr.checkInternetConenction();
             bLogin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Email = et_email.getText().toString();
                     Password = et_pass.getText().toString();
-                    onReqRes(Email,Password,preferenceManager,connectionError, LoginActivity.this);
+                    onReqRes(Email,Password,LoginActivity.this);
                 }
             });
     }//on create() ends
 
     //Method to handle the Request and Response
     ////**************************************************************************************************************************************
-    public void onReqRes(String Email,String Pass,PreferenceManager preferenceManager,ConnectionError connectionError, Context ctx)
+    public void onReqRes(String Email,String Pass, Context ctx)
     {
         final Context context=ctx;
-       final  PreferenceManager preferenceManager1=preferenceManager;
-       final ConnectionError connectionError1 = connectionError;
 
         final String email = Email;
         final String password = Pass;
 
-        if (connectionError.checkInternetConenction())
+        if (connErr.checkInternetConenction())
             if (email.equals("") && password.equals("")) {
                 displayMessage("Email or password can not be empty.");
             }
@@ -112,7 +103,7 @@ public  String Email,Password;
                             boolean success = false;
                             success = jsonResponse.getBoolean("success");
                             if (success) {
-                                preferenceManager1.writeLoginPreference(email,password);
+                                pmLogin.writeLoginPreference(email,password);
                                 String name = jsonResponse.getString("name");
                                 String gender = jsonResponse.getString("gender");
                                 int age = jsonResponse.getInt("age");
@@ -156,7 +147,7 @@ public  String Email,Password;
                     @Override
                     public void onErrorResponse(VolleyError error) {
 
-                        connectionError1.volleyErrorHandling(error);
+                        connErr.volleyErrorHandling(error);
                     }
                 };
 
